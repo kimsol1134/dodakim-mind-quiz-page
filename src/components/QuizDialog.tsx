@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Dialog,
@@ -11,7 +10,17 @@ import QuizDialogQuestion from "./QuizDialogQuestion";
 import QuizDialogResultEmail from "./QuizDialogResultEmail";
 import QuizDialogComplete from "./QuizDialogComplete";
 
-const QUESTIONS = [
+// 1. Define the type at the top to match the prop in QuizDialogQuestion
+type Question = {
+  type: "single" | "multi";
+  question: string;
+  options: string[];
+  min?: number;
+  max?: number;
+};
+
+// 2. Explicitly type the QUESTIONS array
+const QUESTIONS: Question[] = [
   {
     type: "single",
     question: "요즘 '내 마음의 에너지'는 어느 정도라고 느끼시나요?",
