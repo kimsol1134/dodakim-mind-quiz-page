@@ -28,7 +28,7 @@ const Header = () => <header className="fixed top-0 left-0 right-0 z-50 bg-backg
   </header>;
 const Hero = () => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-center bg-grid-white/[0.05]">
     <div className="container mx-auto max-w-3xl">
-      <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white/90">
+      <h2 className="text-4xl font-bold leading-tight text-left md:text-5xl px-0 my-0 mx-0 text-orange-400">
         "퇴근 후, 집으로 다시 출근하는 기분,<br />느낀 적 있나요?"
       </h2>
       <p className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
