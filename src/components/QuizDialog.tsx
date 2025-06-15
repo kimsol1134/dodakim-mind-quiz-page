@@ -9,6 +9,7 @@ import QuizDialogIntro from "./QuizDialogIntro";
 import QuizDialogQuestion from "./QuizDialogQuestion";
 import QuizDialogResultEmail from "./QuizDialogResultEmail";
 import QuizDialogComplete from "./QuizDialogComplete";
+import QuizResultReport from "./QuizResultReport";
 
 // 1. Define the type at the top to match the prop in QuizDialogQuestion
 type Question = {
@@ -26,7 +27,7 @@ const QUESTIONS: Question[] = [
     question: "요즘 '내 마음의 에너지'는 어느 정도라고 느끼시나요?",
     options: [
       "거의 방전 상태예요.",
-      "간신히 하루하루 버티고 있어요.",
+      "간신힘들루 하루하루 버티고 있어요.",
       "그럭저럭 괜찮은 편이에요.",
       "에너지가 꽤 넘치는 편이에요.",
     ],
@@ -171,35 +172,60 @@ export default function QuizDialog({
     onOpenChange(false);
   };
 
+  // step: 0~6 기존, 7=리포트
+  const [showReport, setShowReport] = useState(false);
+
+  const handleGoReport = () => {
+    setShowReport(true);
+  };
+  const closeReport = () => {
+    setShowReport(false);
+    setStep(0);
+    onOpenChange(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="p-0 max-h-[90dvh] overflow-y-auto max-w-md w-full">
-        {step === 0 && (
-          <QuizDialogIntro onNext={handleNext} />
+        {!showReport && (
+          <>
+            {step === 0 && (
+              <QuizDialogIntro onNext={handleNext} />
+            )}
+            {step > 0 && step < 5 && (
+              <QuizDialogQuestion
+                step={step}
+                question={QUESTIONS[step - 1]}
+                value={answers[step - 1]}
+                onSelect={v => handleSelect(step - 1, v)}
+                onCheckMulti={handleCheckMulti}
+                canNext={canNext}
+                onPrev={handlePrev}
+                onNext={handleNext}
+              />
+            )}
+            {step === 5 && (
+              <QuizDialogResultEmail
+                email={email}
+                emailSent={emailSent}
+                setEmail={setEmail}
+                onSubmit={handleEmailSubmit}
+                onClose={closeAndReset}
+              />
+            )}
+            {step === 6 && (
+              <QuizDialogComplete
+                onClose={closeAndReset}
+                onShowReport={handleGoReport}
+              />
+            )}
+          </>
         )}
-        {step > 0 && step < 5 && (
-          <QuizDialogQuestion
-            step={step}
-            question={QUESTIONS[step - 1]}
-            value={answers[step - 1]}
-            onSelect={v => handleSelect(step - 1, v)}
-            onCheckMulti={handleCheckMulti}
-            canNext={canNext}
-            onPrev={handlePrev}
-            onNext={handleNext}
+        {showReport && (
+          <QuizResultReport
+            answers={answers}
+            onClose={closeReport}
           />
-        )}
-        {step === 5 && (
-          <QuizDialogResultEmail
-            email={email}
-            emailSent={emailSent}
-            setEmail={setEmail}
-            onSubmit={handleEmailSubmit}
-            onClose={closeAndReset}
-          />
-        )}
-        {step === 6 && (
-          <QuizDialogComplete onClose={closeAndReset} />
         )}
       </DialogContent>
     </Dialog>
