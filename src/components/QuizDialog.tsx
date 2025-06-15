@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Dialog,
@@ -62,7 +61,7 @@ const QUESTIONS = [
   },
 ];
 
-const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/23383502/uyjvmdi/";
+const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/23383502/uyvyg59/";
 
 export default function QuizDialog({
   open, onOpenChange,
