@@ -114,7 +114,7 @@ const SolutionSection = () => <AnimatedSection id="solution" className="bg-secon
           <div className="h-[46px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
           <div className="h-[64px] w-[3px] bg-gray-800 dark:bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
           <div className="rounded-[2rem] overflow-hidden w-full h-full bg-background p-4 flex flex-col">
-            <div className="space-y-4">
+            <div className="flex-1 flex flex-col justify-end space-y-4">
               <div className="flex justify-end">
                 <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">오늘 회사에서 너무 힘든 일이 있었어...</p>
               </div>
@@ -156,7 +156,7 @@ const FounderSection = () => <AnimatedSection id="final-cta">
         <img alt="Founder" className="w-48 h-48 rounded-full object-cover" src="/lovable-uploads/fa1e3899-c695-48f9-a19b-ddbf29dce4c3.png" />
       </div>
       <div className="md:col-span-2">
-        <p className="text-lg italic text-white/80">"저도 아빠로서, 제 마음을 어디에 둬야 할지 몰라 막막했던 날들이 있었습니다. '도닥임'은 판단의 시선 없이, 그저 제 이야기를 들어줄 누군가가 간절했던 제 자신을 위해 만들었습니다. 당신의 지친 등을 가만히 토닥여주는 그런 존재가 되길 진심으로 바랍니다."</p>
+        <p className="text-lg italic text-white/80">"저도 아버로서, 제 마음을 어디에 둬야 할지 몰라 막막했던 날들이 있었습니다. '도닥임'은 판단의 시선 없이, 그저 제 이야기를 들어줄 누군가가 간절했던 제 자신을 위해 만들었습니다. 당신의 지친 등을 가만히 토닥여주는 그런 존재가 되길 진심으로 바랍니다."</p>
         <p className="text-right mt-4 font-bold">- 도닥임 팀 드림</p>
       </div>
     </div>
