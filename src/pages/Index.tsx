@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowLeftRight, Battery, BatteryCharging, CheckCircle, HandHeart, Users, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import QuizDialog from '@/components/QuizDialog';
+
 const AnimatedSection: React.FC<{
   children: React.ReactNode;
   className?: string;
@@ -167,7 +169,8 @@ const SolutionSection = () => <AnimatedSection id="solution" className="bg-secon
       </div>
     </div>
   </AnimatedSection>;
-const FounderSection = () => <AnimatedSection id="final-cta">
+const FounderSection = () => (
+  <AnimatedSection id="final-cta">
     <div className="bg-secondary rounded-lg p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center">
       <div className="md:col-span-1 flex justify-center">
         <img alt="Founder" className="w-48 h-48 rounded-full object-cover" src="/lovable-uploads/fa1e3899-c695-48f9-a19b-ddbf29dce4c3.png" />
@@ -179,14 +182,28 @@ const FounderSection = () => <AnimatedSection id="final-cta">
     </div>
 
     <div className="text-center mt-20">
-      <h2 className="text-3xl md:text-4xl font-bold">마음의 짐, 조금은 내려놓고 싶으신가요?</h2>
-      <p className="mt-4 text-lg text-white/70">간단한 진단을 통해 나의 마음 상태를 돌아보고, 가장 먼저 위로와 격려를 받아보세요.</p>
+      <h2 className="text-3xl md:text-4xl font-bold">
+        마음의 짐, 조금은 내려놓고 싶으신가요?
+      </h2>
+      <p className="mt-4 text-lg text-white/70">
+        간단한 진단을 통해 나의 마음 상태를 돌아보고, 가장 먼저 위로와 격려를 받아보세요.
+      </p>
       <div className="mt-8">
-        <Button size="lg" className="w-full sm:w-auto" onClick={() => alert('퀴즈 기능은 준비 중입니다.')}>1분만에 마음 진단 시작하기</Button>
-        <p className="mt-3 text-sm text-white/60">당신의 이야기는 소중하고, 안전하게 보호됩니다.</p>
+        <Button
+          size="lg"
+          className="w-full sm:w-auto"
+          onClick={() => setShowQuiz(true)}
+        >
+          1분만에 마음 진단 시작하기
+        </Button>
+        <p className="mt-3 text-sm text-white/60">
+          당신의 이야기는 소중하고, 안전하게 보호됩니다.
+        </p>
       </div>
     </div>
-  </AnimatedSection>;
+  </AnimatedSection>
+);
+
 const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
         <div className="container mx-auto max-w-5xl text-white/60">
             <div className="flex justify-center gap-6 mb-4">
@@ -198,8 +215,12 @@ const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
             <p>© 2025 도닥임. All Rights Reserved.</p>
         </div>
     </footer>;
+
 const Index = () => {
-  return <div className="bg-background text-foreground">
+  const [showQuiz, setShowQuiz] = useState(false);
+
+  return (
+    <div className="bg-background text-foreground">
       <Header />
       <main>
         <Hero />
@@ -209,6 +230,9 @@ const Index = () => {
         <FounderSection />
       </main>
       <Footer />
-    </div>;
+      <QuizDialog open={showQuiz} onOpenChange={setShowQuiz} />
+    </div>
+  );
 };
+
 export default Index;
