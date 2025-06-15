@@ -1,21 +1,25 @@
 import React from 'react';
-import { Battery, BatteryCharging, CheckCircle, HandHeart, Users, Smile, User, BrainCircuit, MessageSquare, ShieldCheck } from 'lucide-react';
+import { ArrowLeftRight, Battery, BatteryCharging, CheckCircle, HandHeart, Users, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
 const AnimatedSection: React.FC<{
   children: React.ReactNode;
   className?: string;
+  id?: string;
 }> = ({
   children,
-  className
+  className,
+  id
 }) => {
   const [ref, isVisible] = useScrollAnimation();
-  return <section ref={ref} className={`py-20 md:py-32 px-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'} ${className}`}>
+  return <section id={id} ref={ref} className={`py-20 md:py-32 px-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'} ${className}`}>
       <div className="container mx-auto max-w-5xl">
         {children}
       </div>
     </section>;
 };
+
 const Header = () => <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
     <div className="container mx-auto max-w-5xl h-20 flex items-center justify-between px-6">
       <h1 className="text-2xl font-black text-white">도닥임</h1>
@@ -26,6 +30,7 @@ const Header = () => <header className="fixed top-0 left-0 right-0 z-50 bg-backg
       </Button>
     </div>
   </header>;
+
 const Hero = () => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-center bg-grid-white/[0.05]">
     <div className="container mx-auto max-w-3xl">
       <h2 className="text-4xl font-bold leading-tight text-left md:text-5xl px-0 my-0 mx-0 text-orange-400">
@@ -47,6 +52,7 @@ const Hero = () => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-c
       </div>
     </div>
   </section>;
+
 const BeforeSection = () => <AnimatedSection className="bg-secondary">
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">혹시, 이런 마음이신가요?</h2>
     <div className="grid md:grid-cols-3 gap-8">
@@ -61,7 +67,7 @@ const BeforeSection = () => <AnimatedSection className="bg-secondary">
         <p className="text-white/70">매일이 그저 버텨내는 시간의 연속입니다. 직장에서 녹초가 되어 돌아오면, 또 다른 역할이 기다리고 있죠. 아이들은 너무 사랑스럽지만, 정작 '나' 자신은 사라지고 있는 기분이 듭니다.</p>
       </div>
       <div className="bg-background p-8 rounded-lg text-center">
-        <User className="w-12 h-12 mx-auto text-primary mb-4" />
+        <ArrowLeftRight className="w-12 h-12 mx-auto text-primary mb-4" />
         <h3 className="text-xl font-bold mb-2">아슬아슬한 관계의 긴장</h3>
         <p className="text-white/70">아내의 서운함이 느껴지고, 나의 답답함도 쌓여만 갑니다. 사소한 일에 울컥하고, 그 모습을 보며 또 한 번 자책하게 되죠. 좋은 남편, 좋은 아빠가 되는 건 너무나 어렵습니다.</p>
       </div>
@@ -70,6 +76,7 @@ const BeforeSection = () => <AnimatedSection className="bg-secondary">
       <p className="text-lg text-white/80">우리는 그저 '참는 것'이 미덕이라 배워왔습니다. 하지만 문제는 당신이 약해서가 아닙니다. 아버지가 겪는 무게에 맞는, 제대로 된 '기댈 곳'이 없었을 뿐입니다.</p>
     </div>
   </AnimatedSection>;
+
 const AfterSection = () => <AnimatedSection>
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">이런 하루를 상상해보세요</h2>
     <div className="grid md:grid-cols-3 gap-8">
@@ -97,6 +104,7 @@ const AfterSection = () => <AnimatedSection>
         </Button>
     </div>
   </AnimatedSection>;
+
 const SolutionSection = () => <AnimatedSection id="solution" className="bg-secondary">
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">당신의 마음 곁에, AI 동반자 '도닥임'</h2>
     <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -141,6 +149,7 @@ const SolutionSection = () => <AnimatedSection id="solution" className="bg-secon
       </div>
     </div>
   </AnimatedSection>;
+
 const FounderSection = () => <AnimatedSection id="final-cta">
     <div className="bg-secondary rounded-lg p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center">
       <div className="md:col-span-1 flex justify-center">
@@ -161,6 +170,7 @@ const FounderSection = () => <AnimatedSection id="final-cta">
       </div>
     </div>
   </AnimatedSection>;
+
 const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
         <div className="container mx-auto max-w-5xl text-white/60">
             <div className="flex justify-center gap-6 mb-4">
@@ -172,6 +182,7 @@ const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
             <p>© 2025 도닥임. All Rights Reserved.</p>
         </div>
     </footer>;
+
 const Index = () => {
   return <div className="bg-background text-foreground">
       <Header />
@@ -185,4 +196,5 @@ const Index = () => {
       <Footer />
     </div>;
 };
+
 export default Index;
