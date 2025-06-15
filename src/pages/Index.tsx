@@ -28,7 +28,7 @@ const Header: React.FC<{ onQuizOpen: () => void }> = ({ onQuizOpen }) => <header
       </Button>
     </div>
   </header>;
-const Hero = () => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-center bg-grid-white/[0.05]">
+const Hero = ({ onQuizOpen }: { onQuizOpen: () => void }) => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-center bg-grid-white/[0.05]">
     <div className="container mx-auto max-w-3xl">
       <h2 className="text-4xl font-bold leading-tight md:text-5xl px-0 my-0 mx-0 text-slate-50 text-center">
         "퇴근 후, 집으로 다시 출근하는 기분,<br />느낀 적 있나요?"
@@ -44,7 +44,7 @@ const Hero = () => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-c
         </ul>
       </div>
       <div className="mt-12">
-        <Button size="lg" className="w-full sm:w-auto" onClick={() => alert('퀴즈 기능은 준비 중입니다.')}>내 마음 배터리 상태 확인하기</Button>
+        <Button size="lg" className="w-full sm:w-auto" onClick={onQuizOpen}>내 마음 배터리 상태 확인하기</Button>
         <p className="mt-3 text-sm text-white/60">1분이면 충분해요. 100% 익명보장</p>
       </div>
     </div>
@@ -225,7 +225,7 @@ const Index = () => {
     <div className="bg-background text-foreground">
       <Header onQuizOpen={handleQuizOpen} />
       <main>
-        <Hero />
+        <Hero onQuizOpen={handleQuizOpen} />
         <BeforeSection />
         <AfterSection />
         <SolutionSection />

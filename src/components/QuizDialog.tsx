@@ -62,6 +62,8 @@ const QUESTIONS = [
   },
 ];
 
+const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/23383502/uyjvmdi/";
+
 export default function QuizDialog({
   open, onOpenChange,
 }: { open: boolean; onOpenChange: (o: boolean) => void }) {
@@ -121,7 +123,28 @@ export default function QuizDialog({
     });
   };
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  // Zapier Webhook 연동
+  const sendToZapier = async (emailValue: string) => {
+    try {
+      await fetch(ZAPIER_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          email: emailValue,
+          answers,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    } catch (e) {
+      // 실제 실패시 사용자가 알 수 없으나 no-cors 사용, 에러는 콘솔로만
+      console.error("Zapier webhook 전송 실패", e);
+    }
+  };
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // 간단한 이메일 포맷 검증
     if (!email.match(/^[\w-.]+@[\w-]+\.[a-zA-Z]{2,}$/)) {
@@ -129,15 +152,13 @@ export default function QuizDialog({
       return;
     }
     setEmailSent(true);
+    await sendToZapier(email);
+    // 잠시 후 닫기 및 초기화
     setTimeout(() => {
-      onOpenChange(false);
-      setTimeout(() => {
-        setStep(0);
-        setAnswers([undefined, undefined, undefined, []]);
-        setEmail("");
-        setEmailSent(false);
-      }, 300);
-    }, 2000);
+      setStep(6);
+      setEmailSent(false);
+      setEmail("");
+    }, 1500);
   };
 
   return (
@@ -273,4 +294,3 @@ export default function QuizDialog({
     </Dialog>
   );
 }
-
