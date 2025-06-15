@@ -131,7 +131,7 @@ const generateOverallAnalysis = (answers: any[]) => {
 const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
   if (!answers || answers.length < 4) {
     return (
-      <div className="flex flex-col gap-6 p-8 max-w-md">
+      <div className="flex flex-col gap-6 p-8 max-w-md bg-card text-foreground">
         <p className="text-foreground">답변 데이터를 불러올 수 없습니다.</p>
         <Button onClick={onClose}>닫기</Button>
       </div>
@@ -142,7 +142,7 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
   const overallAnalysis = generateOverallAnalysis(answers);
 
   return (
-    <div className="flex flex-col gap-6 p-8 max-w-md text-foreground">
+    <div className="flex flex-col gap-6 p-8 max-w-md bg-card text-foreground">
       <DialogHeader>
         <DialogTitle className="text-xl font-bold mb-2 text-foreground">상담 전문가 분석 리포트</DialogTitle>
         <DialogDescription className="text-base mb-4 text-muted-foreground">
@@ -152,85 +152,91 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
       </DialogHeader>
 
       {/* 종합 분석 */}
-      <div className="p-4 bg-primary/10 border border-primary/30 rounded-lg">
+      <div className="p-4 bg-primary/10 border border-primary/30 rounded-lg text-foreground">
         <h3 className="font-bold text-primary mb-2">💡 종합 분석</h3>
         <p className="text-sm text-foreground">{overallAnalysis}</p>
       </div>
 
       <div className="space-y-5">
         {/* 에너지 상태 */}
-        <div className="p-3 bg-card border border-border rounded-lg">
+        <div className="p-3 bg-card border border-border rounded-lg text-foreground">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-lg">⚡</span>
-            <div className="font-bold text-foreground">삶의 에너지 상태</div>
-            <span className={`text-xs px-2 py-1 rounded font-medium ${
-              REPORT_DATA.energy[energy]?.priority === '긴급' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-              REPORT_DATA.energy[energy]?.priority === '높음' ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200' :
-              REPORT_DATA.energy[energy]?.priority === '보통' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-              'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-            }`}>
+            <div className="font-bold">삶의 에너지 상태</div>
+            <span className={`text-xs px-2 py-1 rounded font-medium border
+              ${
+                REPORT_DATA.energy[energy]?.priority === '긴급' ? 'bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-200 border-red-400' :
+                REPORT_DATA.energy[energy]?.priority === '높음' ? 'bg-orange-100 text-orange-900 dark:bg-orange-800 dark:text-orange-200 border-orange-400' :
+                REPORT_DATA.energy[energy]?.priority === '보통' ? 'bg-yellow-100 text-yellow-900 dark:bg-yellow-700 dark:text-yellow-200 border-yellow-400' :
+                'bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-200 border-green-400'
+              }
+            `}>
               {REPORT_DATA.energy[energy]?.priority}
             </span>
           </div>
-          <div className="mb-2 text-sm font-medium text-foreground">{REPORT_DATA.energy[energy]?.label}</div>
+          <div className="mb-2 text-sm font-medium">{REPORT_DATA.energy[energy]?.label}</div>
           <div className="text-sm text-muted-foreground mb-2">{REPORT_DATA.energy[energy]?.analysis}</div>
-          <div className="text-sm bg-blue-50 dark:bg-blue-900/30 p-2 rounded border">
-            <strong className="text-foreground">💊 처방:</strong> <span className="text-foreground">{REPORT_DATA.energy[energy]?.advice}</span>
+          <div className="text-sm bg-blue-50 dark:bg-blue-950 p-2 rounded border border-blue-300 dark:border-blue-800">
+            <strong>💊 처방:</strong> <span>{REPORT_DATA.energy[energy]?.advice}</span>
           </div>
         </div>
 
         {/* 정서적 지지 */}
-        <div className="p-3 bg-card border border-border rounded-lg">
+        <div className="p-3 bg-card border border-border rounded-lg text-foreground">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-lg">🤝</span>
-            <div className="font-bold text-foreground">정서적 지지 환경</div>
-            <span className={`text-xs px-2 py-1 rounded font-medium ${
-              REPORT_DATA.support[support]?.priority === '긴급' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-              REPORT_DATA.support[support]?.priority === '높음' ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200' :
-              REPORT_DATA.support[support]?.priority === '보통' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-              'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-            }`}>
+            <div className="font-bold">정서적 지지 환경</div>
+            <span className={`text-xs px-2 py-1 rounded font-medium border
+              ${
+                REPORT_DATA.support[support]?.priority === '긴급' ? 'bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-200 border-red-400' :
+                REPORT_DATA.support[support]?.priority === '높음' ? 'bg-orange-100 text-orange-900 dark:bg-orange-800 dark:text-orange-200 border-orange-400' :
+                REPORT_DATA.support[support]?.priority === '보통' ? 'bg-yellow-100 text-yellow-900 dark:bg-yellow-700 dark:text-yellow-200 border-yellow-400' :
+                'bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-200 border-green-400'
+              }
+            `}>
               {REPORT_DATA.support[support]?.priority}
             </span>
           </div>
-          <div className="mb-2 text-sm font-medium text-foreground">{REPORT_DATA.support[support]?.label}</div>
+          <div className="mb-2 text-sm font-medium">{REPORT_DATA.support[support]?.label}</div>
           <div className="text-sm text-muted-foreground mb-2">{REPORT_DATA.support[support]?.analysis}</div>
-          <div className="text-sm bg-blue-50 dark:bg-blue-900/30 p-2 rounded border">
-            <strong className="text-foreground">💊 처방:</strong> <span className="text-foreground">{REPORT_DATA.support[support]?.advice}</span>
+          <div className="text-sm bg-blue-50 dark:bg-blue-950 p-2 rounded border border-blue-300 dark:border-blue-800">
+            <strong>💊 처방:</strong> <span>{REPORT_DATA.support[support]?.advice}</span>
           </div>
         </div>
 
         {/* 개인 시간 */}
-        <div className="p-3 bg-card border border-border rounded-lg">
+        <div className="p-3 bg-card border border-border rounded-lg text-foreground">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-lg">⏰</span>
-            <div className="font-bold text-foreground">'나'만의 시간 확보</div>
-            <span className={`text-xs px-2 py-1 rounded font-medium ${
-              REPORT_DATA.time[time]?.priority === '긴급' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-              REPORT_DATA.time[time]?.priority === '높음' ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200' :
-              REPORT_DATA.time[time]?.priority === '보통' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-              'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-            }`}>
+            <div className="font-bold">'나'만의 시간 확보</div>
+            <span className={`text-xs px-2 py-1 rounded font-medium border
+              ${
+                REPORT_DATA.time[time]?.priority === '긴급' ? 'bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-200 border-red-400' :
+                REPORT_DATA.time[time]?.priority === '높음' ? 'bg-orange-100 text-orange-900 dark:bg-orange-800 dark:text-orange-200 border-orange-400' :
+                REPORT_DATA.time[time]?.priority === '보통' ? 'bg-yellow-100 text-yellow-900 dark:bg-yellow-700 dark:text-yellow-200 border-yellow-400' :
+                'bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-200 border-green-400'
+              }
+            `}>
               {REPORT_DATA.time[time]?.priority}
             </span>
           </div>
-          <div className="mb-2 text-sm font-medium text-foreground">{REPORT_DATA.time[time]?.label}</div>
+          <div className="mb-2 text-sm font-medium">{REPORT_DATA.time[time]?.label}</div>
           <div className="text-sm text-muted-foreground mb-2">{REPORT_DATA.time[time]?.analysis}</div>
-          <div className="text-sm bg-blue-50 dark:bg-blue-900/30 p-2 rounded border">
-            <strong className="text-foreground">💊 처방:</strong> <span className="text-foreground">{REPORT_DATA.time[time]?.advice}</span>
+          <div className="text-sm bg-blue-50 dark:bg-blue-950 p-2 rounded border border-blue-300 dark:border-blue-800">
+            <strong>💊 처방:</strong> <span>{REPORT_DATA.time[time]?.advice}</span>
           </div>
         </div>
 
         {/* 맞춤형 제안 */}
-        <div className="p-3 bg-card border border-border rounded-lg">
+        <div className="p-3 bg-card border border-border rounded-lg text-foreground">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-lg">🎯</span>
-            <div className="font-bold text-foreground">맞춤형 실천 제안</div>
+            <div className="font-bold">맞춤형 실천 제안</div>
           </div>
           <div className="mb-2">
             {Array.isArray(needs) && needs.length > 0 ? (
               needs.map((needIndex: number) => (
-                <span key={needIndex} className="inline-block bg-accent/50 text-foreground px-2 py-1 rounded mr-1 mb-1 text-xs border">
+                <span key={needIndex} className="inline-block bg-accent/50 text-foreground px-2 py-1 rounded mr-1 mb-1 text-xs border border-accent">
                   {needIndex === 0 ? "경청" : needIndex === 1 ? "스트레스관리" : needIndex === 2 ? "관계개선" : needIndex === 3 ? "자아찾기" : "커뮤니티"}
                 </span>
               ))
@@ -240,8 +246,8 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
           </div>
           <ul className="text-sm space-y-2">
             {Array.isArray(needs) && needs.length > 0 ? needs.map((needIndex: number) => (
-              <li key={needIndex} className="bg-blue-50 dark:bg-blue-900/30 p-2 rounded border">
-                <strong className="text-foreground">💊 처방:</strong> <span className="text-foreground">{REPORT_DATA.needs[needIndex]}</span>
+              <li key={needIndex} className="bg-blue-50 dark:bg-blue-950 p-2 rounded border border-blue-300 dark:border-blue-800">
+                <strong>💊 처방:</strong> <span>{REPORT_DATA.needs[needIndex]}</span>
               </li>
             )) : (
               <li className="text-sm text-muted-foreground">현재 상태를 잘 유지해 나가시면 됩니다.</li>
