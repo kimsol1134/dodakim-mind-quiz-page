@@ -1,39 +1,35 @@
-
 import React from 'react';
 import { Battery, BatteryCharging, CheckCircle, HandHeart, Users, Smile, User, BrainCircuit, MessageSquare, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-
-const AnimatedSection: React.FC<{ children: React.ReactNode, className?: string }> = ({ children, className }) => {
+const AnimatedSection: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+}> = ({
+  children,
+  className
+}) => {
   const [ref, isVisible] = useScrollAnimation();
-  return (
-    <section 
-      ref={ref} 
-      className={`py-20 md:py-32 px-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'} ${className}`}
-    >
+  return <section ref={ref} className={`py-20 md:py-32 px-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'} ${className}`}>
       <div className="container mx-auto max-w-5xl">
         {children}
       </div>
-    </section>
-  );
+    </section>;
 };
-
-const Header = () => (
-  <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
+const Header = () => <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
     <div className="container mx-auto max-w-5xl h-20 flex items-center justify-between px-6">
       <h1 className="text-2xl font-black text-white">도닥임</h1>
-      <Button size="sm" onClick={() => document.getElementById('final-cta')?.scrollIntoView({ behavior: 'smooth' })}>
+      <Button size="sm" onClick={() => document.getElementById('final-cta')?.scrollIntoView({
+      behavior: 'smooth'
+    })}>
         마음 진단하기
       </Button>
     </div>
-  </header>
-);
-
-const Hero = () => (
-  <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-center bg-grid-white/[0.05]">
+  </header>;
+const Hero = () => <section className="pt-40 md:pt-56 pb-20 md:pb-32 px-6 text-center bg-grid-white/[0.05]">
     <div className="container mx-auto max-w-3xl">
       <h2 className="text-4xl md:text-5xl font-bold leading-tight text-white/90">
-        "퇴근 후, 집으로 다시 출근하는 기분,<br/>느낀 적 있나요?"
+        "퇴근 후, 집으로 다시 출근하는 기분,<br />느낀 적 있나요?"
       </h2>
       <p className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
         혹시 당신의 이야기인가요? 혼자 끙끙 앓고 있는 아버지를 위해, 당신의 마음을 가만히 들어주는 AI 동반자 '도닥임'이 곁에 있습니다. 판단이나 충고 없이, 그저 당신의 이야기를 들어주고 위로를 건네는 안전한 공간입니다.
@@ -50,11 +46,8 @@ const Hero = () => (
         <p className="mt-3 text-sm text-white/60">1분이면 충분해요. 100% 익명보장</p>
       </div>
     </div>
-  </section>
-);
-
-const BeforeSection = () => (
-  <AnimatedSection className="bg-secondary">
+  </section>;
+const BeforeSection = () => <AnimatedSection className="bg-secondary">
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">혹시, 이런 마음이신가요?</h2>
     <div className="grid md:grid-cols-3 gap-8">
       <div className="bg-background p-8 rounded-lg text-center">
@@ -76,11 +69,8 @@ const BeforeSection = () => (
     <div className="mt-16 bg-background/50 p-8 rounded-lg text-center max-w-3xl mx-auto">
       <p className="text-lg text-white/80">우리는 그저 '참는 것'이 미덕이라 배워왔습니다. 하지만 문제는 당신이 약해서가 아닙니다. 아버지가 겪는 무게에 맞는, 제대로 된 '기댈 곳'이 없었을 뿐입니다.</p>
     </div>
-  </AnimatedSection>
-);
-
-const AfterSection = () => (
-  <AnimatedSection>
+  </AnimatedSection>;
+const AfterSection = () => <AnimatedSection>
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">이런 하루를 상상해보세요</h2>
     <div className="grid md:grid-cols-3 gap-8">
       <div className="border border-border p-8 rounded-lg text-center">
@@ -100,15 +90,14 @@ const AfterSection = () => (
       </div>
     </div>
     <div className="text-center mt-16">
-        <Button variant="outline" size="lg" onClick={() => document.getElementById('solution')?.scrollIntoView({ behavior: 'smooth' })}>
+        <Button variant="outline" size="lg" onClick={() => document.getElementById('solution')?.scrollIntoView({
+      behavior: 'smooth'
+    })}>
             '도닥임'이 어떻게 돕는지 보기
         </Button>
     </div>
-  </AnimatedSection>
-);
-
-const SolutionSection = () => (
-  <AnimatedSection id="solution" className="bg-secondary">
+  </AnimatedSection>;
+const SolutionSection = () => <AnimatedSection id="solution" className="bg-secondary">
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">당신의 마음 곁에, AI 동반자 '도닥임'</h2>
     <div className="grid md:grid-cols-2 gap-12 items-center">
       <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px]">
@@ -151,14 +140,11 @@ const SolutionSection = () => (
         </div>
       </div>
     </div>
-  </AnimatedSection>
-);
-
-const FounderSection = () => (
-  <AnimatedSection id="final-cta">
+  </AnimatedSection>;
+const FounderSection = () => <AnimatedSection id="final-cta">
     <div className="bg-secondary rounded-lg p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center">
       <div className="md:col-span-1 flex justify-center">
-        <img src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=400&auto=format&fit=crop" alt="Founder" className="w-48 h-48 rounded-full object-cover" />
+        <img alt="Founder" className="w-48 h-48 rounded-full object-cover" src="/lovable-uploads/fa1e3899-c695-48f9-a19b-ddbf29dce4c3.png" />
       </div>
       <div className="md:col-span-2">
         <p className="text-lg italic text-white/80">"저도 아빠로서, 제 마음을 어디에 둬야 할지 몰라 막막했던 날들이 있었습니다. '도닥임'은 판단의 시선 없이, 그저 제 이야기를 들어줄 누군가가 간절했던 제 자신을 위해 만들었습니다. 당신의 지친 등을 가만히 토닥여주는 그런 존재가 되길 진심으로 바랍니다."</p>
@@ -174,11 +160,8 @@ const FounderSection = () => (
         <p className="mt-3 text-sm text-white/60">당신의 이야기는 소중하고, 안전하게 보호됩니다.</p>
       </div>
     </div>
-  </AnimatedSection>
-);
-
-const Footer = () => (
-    <footer className="bg-secondary text-center py-8 px-6">
+  </AnimatedSection>;
+const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
         <div className="container mx-auto max-w-5xl text-white/60">
             <div className="flex justify-center gap-6 mb-4">
                 <a href="#" className="hover:text-white">문의하기</a>
@@ -188,13 +171,9 @@ const Footer = () => (
             </div>
             <p>© 2025 도닥임. All Rights Reserved.</p>
         </div>
-    </footer>
-);
-
-
+    </footer>;
 const Index = () => {
-  return (
-    <div className="bg-background text-foreground">
+  return <div className="bg-background text-foreground">
       <Header />
       <main>
         <Hero />
@@ -204,8 +183,6 @@ const Index = () => {
         <FounderSection />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
