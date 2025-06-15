@@ -16,7 +16,7 @@ type Props = {
 const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
   if (!answers || answers.length < 4) {
     return (
-      <div className="flex flex-col gap-6 p-8 max-w-md bg-card text-foreground">
+      <div className="flex flex-col gap-6 p-8 max-w-md">
         <p className="text-foreground">답변 데이터를 불러올 수 없습니다.</p>
         <Button onClick={onClose}>닫기</Button>
       </div>
@@ -27,7 +27,7 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
   const overallAnalysis = generateOverallAnalysis(answers);
 
   return (
-    <div className="flex flex-col gap-6 p-8 max-w-md bg-card text-foreground">
+    <div className="flex flex-col gap-6 p-8 max-w-md">
       <ReportHeader />
       <OverallAnalysis overallAnalysis={overallAnalysis} />
 

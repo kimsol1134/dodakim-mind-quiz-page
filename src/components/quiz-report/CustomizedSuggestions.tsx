@@ -13,15 +13,15 @@ const CustomizedSuggestions: React.FC<Props> = ({ needs, needsData }) => {
   };
 
   return (
-    <div className="p-3 bg-card border border-border rounded-lg text-foreground">
+    <div className="p-3 bg-secondary/20 border border-secondary/30 rounded-lg">
       <div className="flex items-center gap-2 mb-2">
         <span className="text-lg">🎯</span>
-        <div className="font-bold">맞춤형 실천 제안</div>
+        <div className="font-bold text-foreground">맞춤형 실천 제안</div>
       </div>
       <div className="mb-2">
         {Array.isArray(needs) && needs.length > 0 ? (
           needs.map((needIndex: number) => (
-            <span key={needIndex} className="inline-block bg-accent/50 text-foreground px-2 py-1 rounded mr-1 mb-1 text-xs border border-accent">
+            <span key={needIndex} className="inline-block bg-accent/30 text-foreground px-2 py-1 rounded mr-1 mb-1 text-xs border border-accent/40">
               {getNeedLabel(needIndex)}
             </span>
           ))
@@ -31,8 +31,8 @@ const CustomizedSuggestions: React.FC<Props> = ({ needs, needsData }) => {
       </div>
       <ul className="text-sm space-y-2">
         {Array.isArray(needs) && needs.length > 0 ? needs.map((needIndex: number) => (
-          <li key={needIndex} className="bg-blue-50 dark:bg-blue-950 p-2 rounded border border-blue-300 dark:border-blue-800">
-            <strong>💊 처방:</strong> <span>{needsData[needIndex]}</span>
+          <li key={needIndex} className="bg-accent/20 border border-accent/30 p-2 rounded">
+            <strong className="text-foreground">💊 처방:</strong> <span className="text-foreground">{needsData[needIndex]}</span>
           </li>
         )) : (
           <li className="text-sm text-muted-foreground">현재 상태를 잘 유지해 나가시면 됩니다.</li>

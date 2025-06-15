@@ -13,16 +13,16 @@ type Props = {
 
 const ReportSection: React.FC<Props> = ({ icon, title, label, analysis, advice, priority }) => {
   return (
-    <div className="p-3 bg-card border border-border rounded-lg text-foreground">
+    <div className="p-3 bg-secondary/20 border border-secondary/30 rounded-lg">
       <div className="flex items-center gap-2 mb-2">
         <span className="text-lg">{icon}</span>
-        <div className="font-bold">{title}</div>
+        <div className="font-bold text-foreground">{title}</div>
         <PriorityBadge priority={priority} />
       </div>
-      <div className="mb-2 text-sm font-medium">{label}</div>
+      <div className="mb-2 text-sm font-medium text-foreground">{label}</div>
       <div className="text-sm text-muted-foreground mb-2">{analysis}</div>
-      <div className="text-sm bg-blue-50 dark:bg-blue-950 p-2 rounded border border-blue-300 dark:border-blue-800">
-        <strong>💊 처방:</strong> <span>{advice}</span>
+      <div className="text-sm bg-accent/20 border border-accent/30 p-2 rounded">
+        <strong className="text-foreground">💊 처방:</strong> <span className="text-foreground">{advice}</span>
       </div>
     </div>
   );
