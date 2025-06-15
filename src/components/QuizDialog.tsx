@@ -1,18 +1,15 @@
+
 import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogTitle,
-  DialogDescription,
-  DialogHeader,
-  DialogFooter,
-  DialogClose,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
+// 분할된 UI
+import QuizDialogIntro from "./QuizDialogIntro";
+import QuizDialogQuestion from "./QuizDialogQuestion";
+import QuizDialogResultEmail from "./QuizDialogResultEmail";
+import QuizDialogComplete from "./QuizDialogComplete";
 
 const QUESTIONS = [
   {
@@ -152,7 +149,6 @@ export default function QuizDialog({
     }
     setEmailSent(true);
     await sendToZapier(email);
-    // 잠시 후 닫기 및 초기화
     setTimeout(() => {
       setStep(6);
       setEmailSent(false);
@@ -160,134 +156,40 @@ export default function QuizDialog({
     }, 1500);
   };
 
+  const closeAndReset = () => {
+    setStep(0);
+    onOpenChange(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="p-0 max-h-[90dvh] overflow-y-auto max-w-md w-full">
-        {/* Step 0: Hook */}
         {step === 0 && (
-          <div className="flex flex-col items-center gap-6 p-8">
-            <DialogTitle className="text-2xl text-center font-bold mb-2">나의 '마음 배터리', 지금 몇 퍼센트일까요?</DialogTitle>
-            <DialogDescription className="text-base text-center mb-4 text-muted-foreground">
-              아빠로서 나의 오늘은 어땠는지,<br />
-              간단한 질문을 통해 잠시 돌아보는 시간을 가져보세요.<br />
-              당신의 이야기를 들려주시면, '도닥임'이 가장 먼저 위로를 전해드릴게요.
-            </DialogDescription>
-            <Button size="lg" className="w-full" onClick={handleNext}>
-              내 마음 상태 확인하기
-            </Button>
-          </div>
+          <QuizDialogIntro onNext={handleNext} />
         )}
-        {/* Step 1~4: Questions */}
         {step > 0 && step < 5 && (
-          <form
-            className="flex flex-col gap-8 p-8"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (canNext) handleNext();
-            }}
-          >
-            <DialogHeader>
-              <DialogTitle className="text-xl">{QUESTIONS[step - 1].question}</DialogTitle>
-            </DialogHeader>
-            <div className="flex flex-col gap-3">
-              {QUESTIONS[step - 1].type === "single" ? (
-                <RadioGroup
-                  value={answers[step - 1]}
-                  onValueChange={(v) => handleSelect(step - 1, v)}
-                >
-                  {QUESTIONS[step - 1].options.map((option, idx) => (
-                    <label
-                      className="flex items-center gap-3 hover:bg-accent rounded px-2 py-2 cursor-pointer"
-                      key={option}
-                    >
-                      <RadioGroupItem value={option} id={`radio-q${step}-${idx}`} />
-                      <span className="text-base">{option}</span>
-                    </label>
-                  ))}
-                </RadioGroup>
-              ) : (
-                <div className="flex flex-col gap-3">
-                  {QUESTIONS[3].options.map((option, idx) => (
-                    <label
-                      key={option}
-                      className="flex items-center gap-3 hover:bg-accent rounded px-2 py-2 cursor-pointer"
-                    >
-                      <Checkbox
-                        checked={answers[3]?.includes(idx)}
-                        onCheckedChange={() => handleCheckMulti(idx)}
-                        id={`quiz-multi-${idx}`}
-                      />
-                      <span className="text-base">{option}</span>
-                    </label>
-                  ))}
-                  <span className="text-xs text-muted-foreground mt-1">
-                    최대 2개까지 선택할 수 있어요.
-                  </span>
-                </div>
-              )}
-            </div>
-            <DialogFooter className="flex gap-2">
-              <Button type="button" variant="secondary" onClick={handlePrev}>이전</Button>
-              <Button type="submit" disabled={!canNext} className="w-full">다음</Button>
-            </DialogFooter>
-          </form>
+          <QuizDialogQuestion
+            step={step}
+            question={QUESTIONS[step - 1]}
+            value={answers[step - 1]}
+            onSelect={v => handleSelect(step - 1, v)}
+            onCheckMulti={handleCheckMulti}
+            canNext={canNext}
+            onPrev={handlePrev}
+            onNext={handleNext}
+          />
         )}
-        {/* Step 5: 결과/공감/이메일 */}
         {step === 5 && (
-          <div className="flex flex-col gap-6 p-8">
-            <DialogHeader className="mb-2">
-              <DialogTitle className="text-xl font-bold">
-                답변해주셔서 감사합니다. 당신 혼자만 그런 것이 아닙니다.
-              </DialogTitle>
-              <DialogDescription className="mt-3 text-base text-muted-foreground">
-                많은 아버지들이 비슷한 감정과 고민을 안고 살아갑니다.<br />
-                힘들다고 말하지 못했을 뿐, 모두 각자의 무게를 견디고 있죠.<br />
-                당신의 지친 마음에 가장 먼저 따뜻한 위로를 건넬 수 있도록,<br />
-                '도닥임'이 곧 찾아갑니다.<br />
-              </DialogDescription>
-            </DialogHeader>
-            <form
-              onSubmit={handleEmailSubmit}
-              className="flex flex-col gap-4"
-              autoComplete="off"
-            >
-              <div>
-                <span className="font-bold text-lg block mb-2">
-                  '도닥임' 대기자 명단에 등록하고 가장 먼저 소식을 받아보세요.
-                </span>
-                <div className="flex gap-2 mt-2">
-                  <Input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="이메일 주소를 입력해주세요"
-                    required
-                    disabled={emailSent}
-                  />
-                  <Button type="submit" disabled={emailSent}>가장 먼저 위로 받기</Button>
-                </div>
-                <div className="mt-3 text-sm text-muted-foreground flex flex-col gap-1">
-                  <span>✓ 정식 출시 시 가장 먼저 알림</span>
-                  <span>✓ 초기 사용자들을 위한 특별 혜택 제공</span>
-                </div>
-              </div>
-            </form>
-            <Button variant="secondary" onClick={() => { setStep(0); onOpenChange(false); }}>
-              닫기
-            </Button>
-          </div>
+          <QuizDialogResultEmail
+            email={email}
+            emailSent={emailSent}
+            setEmail={setEmail}
+            onSubmit={handleEmailSubmit}
+            onClose={closeAndReset}
+          />
         )}
-        {/* Step 6: 완료 메시지 */}
         {step === 6 && (
-          <div className="flex flex-col gap-8 p-8 items-center justify-center">
-            <DialogTitle className="text-xl text-center">
-              등록이 완료되었습니다.<br />
-              '도닥임'이 당신의 곁을 찾아갈 때, 가장 먼저 알려드릴게요.
-            </DialogTitle>
-            <Button onClick={() => { setStep(0); onOpenChange(false); }}>
-              닫기
-            </Button>
-          </div>
+          <QuizDialogComplete onClose={closeAndReset} />
         )}
       </DialogContent>
     </Dialog>
