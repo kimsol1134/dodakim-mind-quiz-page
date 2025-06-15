@@ -15,7 +15,7 @@ const ReportSection: React.FC<Props> = ({ icon, title, label, analysis, advice, 
   console.log(`ReportSection ${title}:`, { label, analysis, advice, priority });
   
   return (
-    <div className="p-3 bg-card border border-border rounded-lg">
+    <div className="p-3 bg-card/50 border border-border rounded-lg">
       <div className="flex items-center gap-2 mb-2">
         <span className="text-lg">{icon}</span>
         <div className="font-bold text-card-foreground">{title}</div>
@@ -23,10 +23,12 @@ const ReportSection: React.FC<Props> = ({ icon, title, label, analysis, advice, 
       </div>
       <div className="mb-2 text-sm font-medium text-card-foreground">{label}</div>
       <div className="text-sm text-muted-foreground mb-2">{analysis}</div>
-      <div className="text-sm bg-muted/20 border border-border p-2 rounded">
-        <strong className="text-card-foreground">💊 처방:</strong> 
-        <span className="text-card-foreground ml-1">{advice}</span>
-      </div>
+      {advice && (
+        <div className="text-sm bg-muted/20 border border-border p-2 rounded">
+          <strong className="text-card-foreground">💊 처방:</strong> 
+          <span className="text-card-foreground ml-1">{advice}</span>
+        </div>
+      )}
     </div>
   );
 };

@@ -28,24 +28,36 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
   const [energy, support, time, needs] = answers;
   
   console.log("Individual answers:", { energy, support, time, needs });
+  console.log("REPORT_DATA structure:", REPORT_DATA);
   
   const overallAnalysis = generateOverallAnalysis(answers);
 
-  // 안전한 데이터 접근을 위한 함수
+  // 안전한 데이터 접근을 위한 함수 - 인덱스 범위 체크 추가
   const getReportData = (category: 'energy' | 'support' | 'time', index: number) => {
-    const data = REPORT_DATA[category]?.[index];
-    console.log(`Getting ${category} data for index ${index}:`, data);
-    return data || {
-      label: "데이터를 불러올 수 없습니다.",
-      analysis: "분석 데이터가 없습니다.",
-      advice: "조언 데이터가 없습니다.",
-      priority: "보통"
-    };
+    console.log(`Accessing ${category} data at index ${index}`);
+    const categoryData = REPORT_DATA[category];
+    console.log(`Category ${category} has ${categoryData?.length || 0} items`);
+    
+    if (!categoryData || index < 0 || index >= categoryData.length) {
+      console.log(`Invalid index ${index} for category ${category}`);
+      return {
+        label: "데이터를 확인 중입니다.",
+        analysis: "잠시만 기다려주세요.",
+        advice: "곧 개인화된 조언을 제공해드릴게요.",
+        priority: "보통"
+      };
+    }
+    
+    const data = categoryData[index];
+    console.log(`Retrieved data for ${category}[${index}]:`, data);
+    return data;
   };
 
   const energyData = getReportData('energy', energy);
   const supportData = getReportData('support', support);
   const timeData = getReportData('time', time);
+
+  console.log("Final data:", { energyData, supportData, timeData });
 
   return (
     <div className="flex flex-col gap-6 p-8 max-w-md bg-background text-foreground">
