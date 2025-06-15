@@ -67,7 +67,8 @@ const QUESTIONS: Question[] = [
   },
 ];
 
-const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/23383502/uyvyg59/";
+// 기존 webhook 주소 → 신규 주소로 변경
+const ZAPIER_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/23383502/uyvouoz/";
 
 export default function QuizDialog({
   open, onOpenChange,
