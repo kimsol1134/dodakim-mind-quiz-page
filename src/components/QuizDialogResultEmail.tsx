@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -65,6 +64,11 @@ const QuizDialogResultEmail: React.FC<Props> = ({
               disabled={emailSent}
             />
             <Button type="submit" disabled={emailSent}>가장 먼저 위로 받기</Button>
+          </div>
+          {/* 수집 목적 및 보관 기간 안내 문구 추가 */}
+          <div className="mt-2 mb-1 text-xs text-muted-foreground">
+            수집 목적: 서비스 출시 소식 및 관련 정보 제공<br />
+            보관 기간: 안내 제공 완료 시까지 또는 동의 철회 시 즉시 파기
           </div>
           <div className="mt-3 text-sm text-muted-foreground flex flex-col gap-1">
             <span>✓ 정식 출시 시 가장 먼저 알림</span>
