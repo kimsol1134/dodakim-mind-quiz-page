@@ -121,6 +121,18 @@ const SolutionSection = () => <AnimatedSection id="solution" className="bg-secon
               <div className="flex justify-start">
                 <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">정말 힘드셨겠네요. 어떤 일이 있었는지 조금 더 이야기해주실 수 있을까요?</p>
               </div>
+              <div className="flex justify-end">
+                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">별거 아닌 일인데 괜히 자존심이 상했어. 그래서 집에 와서도 표정이 어두워졌던 것 같아.</p>
+              </div>
+              <div className="flex justify-start">
+                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">스스로를 탓하지 않으셔도 괜찮아요. 그런 마음을 이렇게 털어놔 주셔서 고마워요.</p>
+              </div>
+              <div className="flex justify-end">
+                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">고마워. 괜히 혼자 꾹 참고만 있었던 것 같다.</p>
+              </div>
+              <div className="flex justify-start">
+                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">마음을 나누는 순간, 그 무게가 조금은 가벼워질 거예요. 오늘 당신이 한 걸음 내딛은 것만으로도 충분히 잘하고 계신 거랍니다.</p>
+              </div>
             </div>
           </div>
       </div>
