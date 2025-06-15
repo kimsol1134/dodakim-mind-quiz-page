@@ -217,6 +217,7 @@ const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
     </footer>;
 
 const Index = () => {
+  // Add this useState hook to properly track the quiz popup state
   const [showQuiz, setShowQuiz] = useState(false);
 
   return (
