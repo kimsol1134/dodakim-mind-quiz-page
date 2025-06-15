@@ -20,12 +20,10 @@ const AnimatedSection: React.FC<{
       </div>
     </section>;
 };
-const Header = () => <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
+const Header: React.FC<{ onQuizOpen: () => void }> = ({ onQuizOpen }) => <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
     <div className="container mx-auto max-w-5xl h-20 flex items-center justify-between px-6">
       <h1 className="text-2xl font-black text-white">도닥임</h1>
-      <Button size="sm" onClick={() => document.getElementById('final-cta')?.scrollIntoView({
-      behavior: 'smooth'
-    })}>
+      <Button size="sm" onClick={onQuizOpen}>
         마음 진단하기
       </Button>
     </div>
@@ -169,7 +167,7 @@ const SolutionSection = () => <AnimatedSection id="solution" className="bg-secon
       </div>
     </div>
   </AnimatedSection>;
-const FounderSection = () => (
+const FounderSection: React.FC<{ onQuizOpen: () => void }> = ({ onQuizOpen }) => (
   <AnimatedSection id="final-cta">
     <div className="bg-secondary rounded-lg p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center">
       <div className="md:col-span-1 flex justify-center">
@@ -192,7 +190,7 @@ const FounderSection = () => (
         <Button
           size="lg"
           className="w-full sm:w-auto"
-          onClick={() => setShowQuiz(true)}
+          onClick={onQuizOpen}
         >
           1분만에 마음 진단 시작하기
         </Button>
@@ -217,18 +215,21 @@ const Footer = () => <footer className="bg-secondary text-center py-8 px-6">
     </footer>;
 
 const Index = () => {
-  // Add this useState hook to properly track the quiz popup state
   const [showQuiz, setShowQuiz] = useState(false);
+
+  const handleQuizOpen = () => {
+    setShowQuiz(true);
+  };
 
   return (
     <div className="bg-background text-foreground">
-      <Header />
+      <Header onQuizOpen={handleQuizOpen} />
       <main>
         <Hero />
         <BeforeSection />
         <AfterSection />
         <SolutionSection />
-        <FounderSection />
+        <FounderSection onQuizOpen={handleQuizOpen} />
       </main>
       <Footer />
       <QuizDialog open={showQuiz} onOpenChange={setShowQuiz} />
