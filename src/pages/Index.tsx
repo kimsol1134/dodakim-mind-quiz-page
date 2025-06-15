@@ -116,22 +116,34 @@ const SolutionSection = () => <AnimatedSection id="solution" className="bg-secon
           <div className="rounded-[2rem] overflow-hidden w-full h-full bg-background p-4 flex flex-col">
             <div className="flex-1 flex flex-col justify-end space-y-4">
               <div className="flex justify-end">
-                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">오늘 회사에서 너무 힘든 일이 있었어...</p>
+                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">
+                  오늘 아이 재우는 게 너무 힘들었어. 계속 칭얼거리고, 어떻게 해야 할지 모르겠더라.
+                </p>
               </div>
               <div className="flex justify-start">
-                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">정말 힘드셨겠네요. 어떤 일이 있었는지 조금 더 이야기해주실 수 있을까요?</p>
+                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">
+                  아빠로서 정말 지치셨겠어요. 혹시 아이가 칭얼거릴 때 어떤 감정이 드셨나요?
+                </p>
               </div>
               <div className="flex justify-end">
-                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">별거 아닌 일인데 괜히 자존심이 상했어. 그래서 집에 와서도 표정이 어두워졌던 것 같아.</p>
+                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">
+                  내가 좋은 아빠가 맞나 싶고, 괜히 짜증도 났어. 아내한테 미안해지기도 하고...
+                </p>
               </div>
               <div className="flex justify-start">
-                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">스스로를 탓하지 않으셔도 괜찮아요. 그런 마음을 이렇게 털어놔 주셔서 고마워요.</p>
+                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">
+                  그럴 때 스스로를 탓하지 않으셔도 괜찮아요. 아이의 마음과 아빠의 마음, 모두 쉽지 않죠.
+                </p>
               </div>
               <div className="flex justify-end">
-                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">고마워. 괜히 혼자 꾹 참고만 있었던 것 같다.</p>
+                <p className="bg-primary text-primary-foreground p-3 rounded-lg max-w-[80%]">
+                  이렇게 누군가에게 털어놓으니 마음이 조금은 놓이는 것 같아. 고마워.
+                </p>
               </div>
               <div className="flex justify-start">
-                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">마음을 나누는 순간, 그 무게가 조금은 가벼워질 거예요. 오늘 당신이 한 걸음 내딛은 것만으로도 충분히 잘하고 계신 거랍니다.</p>
+                <p className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[80%]">
+                  언제든 마음 속 이야기를 나눠주세요. 오늘도 충분히 잘하고 계신 아빠예요.
+                </p>
               </div>
             </div>
           </div>
