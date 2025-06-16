@@ -4,7 +4,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useQuizState } from "@/hooks/useQuizState";
 import { sendToZapier } from "@/utils/webhookService";
-import { QUESTIONS } from "@/data/quizData";
+import { QUESTIONS_KO, QUESTIONS_EN } from "@/data/quizData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // 분할된 UI 컴포넌트들
 import QuizDialogIntro from "./QuizDialogIntro";
@@ -21,6 +22,9 @@ export default function QuizDialog({
   onOpenChange: (o: boolean) => void;
 }) {
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const QUESTIONS = language === 'ko' ? QUESTIONS_KO : QUESTIONS_EN;
+  
   const {
     step,
     setStep,
@@ -63,7 +67,7 @@ export default function QuizDialog({
     const arr: number[] = Array.isArray(answers[3]) ? [...answers[3]] : [];
     if (!arr.includes(idx) && arr.length >= 2) {
       toast({
-        title: "최대 2개까지 선택할 수 있어요.",
+        title: language === 'ko' ? "최대 2개까지 선택할 수 있어요." : "You can select up to 2 options.",
       });
       return;
     }
@@ -73,7 +77,11 @@ export default function QuizDialog({
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.match(/^[\w-.]+@[\w-]+\.[a-zA-Z]{2,}$/)) {
-      toast({ title: "올바른 이메일 주소를 입력해주세요." });
+      toast({ 
+        title: language === 'ko' 
+          ? "올바른 이메일 주소를 입력해주세요." 
+          : "Please enter a valid email address."
+      });
       return;
     }
     setEmailSent(true);

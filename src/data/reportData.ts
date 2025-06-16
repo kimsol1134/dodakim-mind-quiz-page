@@ -1,5 +1,5 @@
 
-export const REPORT_DATA = {
+export const REPORT_DATA_KO = {
   energy: [
     {
       label: "거의 방전 상태예요.",
@@ -86,3 +86,93 @@ export const REPORT_DATA = {
     "다른 아빠들과 연결되고 싶으시군요. 혼자가 아니라는 걸 느끼고 싶으시죠? 온라인 아빠 커뮤니티에 가볍게 참여해보세요. 비슷한 고민을 하는 분들이 많이 계실 거예요."
   ]
 };
+
+export const REPORT_DATA_EN = {
+  energy: [
+    {
+      label: "Almost completely drained.",
+      analysis: "You must be going through a really tough time right now. You probably haven't had any time to take care of yourself in the daily routine. You've really been through a lot.",
+      advice: "First, tell yourself 'You've really been through a lot.' I hope you can take 10 minutes a day to just breathe and do nothing. You deserve to rest too.",
+      priority: "urgent"
+    },
+    {
+      label: "Barely getting through each day.",
+      analysis: "Every day must feel overwhelming, but you're amazing for continuing to persevere. Your current fatigue is completely natural. Anyone would struggle in this situation.",
+      advice: "It's okay not to be perfect. Try to make even one small moment for yourself today. Listening to a favorite song or having a warm cup of tea would be great.",
+      priority: "high"
+    },
+    {
+      label: "Doing okay overall.",
+      analysis: "I can see you're trying to maintain balance. I hope you don't lose that caring spirit for yourself. You're already doing so many things well.",
+      advice: "You're doing well. Sometimes it would be good to tell yourself 'You're hanging in there well, thank you.' Please acknowledge your efforts.",
+      priority: "moderate"
+    },
+    {
+      label: "Feeling quite energetic.",
+      analysis: "That's wonderful! It seems like you're taking good care of yourself. This positive energy must be having a good influence on your family too.",
+      advice: "Keep maintaining this good flow. Your bright energy is probably a great source of strength for those around you. Please continue to cherish this positive mindset.",
+      priority: "good"
+    }
+  ],
+  support: [
+    {
+      label: "Not at all.",
+      analysis: "You're handling everything alone. Not having a place to open up must be really lonely and difficult. You must have endured and persevered so much by yourself.",
+      advice: "Remember that you're not alone. Online dad communities or counseling services could be good starting points. How about taking small steps first?",
+      priority: "urgent"
+    },
+    {
+      label: "There is someone, but it's hard to be honest.",
+      analysis: "It must not be easy to open up, but I totally understand that feeling. It's hard to show weakness as a man and as a father, right? I really understand the burden you feel.",
+      advice: "Start with small things first. Simple expressions like 'I'm a bit tired today.' The other person will appreciate your honesty too.",
+      priority: "high"
+    },
+    {
+      label: "Sometimes I do.",
+      analysis: "Being able to share your heart even sometimes is really precious. Just having such a relationship must be a great source of strength. You already have a good foundation for relationships.",
+      advice: "You already have good relationships. Sharing your heart a bit more often would be even more strength for both of you. You're probably being a precious supporter to someone too.",
+      priority: "moderate"
+    },
+    {
+      label: "I always have someone I can rely on.",
+      analysis: "You have such reliable supporters! Having such relationships is a huge blessing. It's beautiful that you have relationships where you can trust and depend on each other.",
+      advice: "Keep nurturing these precious relationships. You're probably being such a reliable presence for someone too. I'm so glad you have these relationships.",
+      priority: "good"
+    }
+  ],
+  time: [
+    {
+      label: "Almost none.",
+      analysis: "You're always living only for others. Your spirit of sacrifice for your family is truly admirable, but you're a precious person too. It breaks my heart that you don't have time to take care of yourself.",
+      advice: "Don't feel guilty. Time for yourself isn't a luxury, it's essential. Even 5 minutes is good, try to create moments that are entirely for yourself.",
+      priority: "urgent"
+    },
+    {
+      label: "Less than an hour.",
+      analysis: "You always put family first, work first, but your heart needs recharging too. You've really endured and persevered so much. Such self-sacrifice is amazing, but you have the right to rest too.",
+      advice: "Gift yourself time just for you once a week. Walking alone or reading a favorite book, anything is good. Loving yourself is also loving your family.",
+      priority: "high"
+    },
+    {
+      label: "I try to make time occasionally.",
+      analysis: "I can see you're trying to take care of yourself. Such effort itself is really precious. It's wonderful that you have the mindset to think about yourself even in busy daily life.",
+      advice: "Please continue your efforts to make time for yourself like now. Such time will eventually help you become a better person for your family too.",
+      priority: "moderate"
+    },
+    {
+      label: "I think I have enough.",
+      analysis: "You're doing excellent self-care! I can feel your heart that cherishes yourself. It seems like you're balancing work, family, and yourself well.",
+      advice: "Please definitely maintain these good habits. You'd probably be a good role model for other dads too. A father who loves himself is the best gift for the family.",
+      priority: "good"
+    }
+  ],
+  needs: [
+    "You want to open up your heart. That's a natural feeling. It would be good to start by writing a diary, or starting in anonymous online spaces. There are definitely people who will listen to your story.",
+    "Stress and anger have built up. I really understand. Try taking deep breaths and go out for a walk, even for 10 minutes. When you're angry, start by acknowledging that emotion and accepting 'I'm angry right now.'",
+    "You want to improve your relationship with someone precious. Practice starting conversations with 'I feel that...' rather than 'Because of you.' It's about conveying your heart rather than blaming.",
+    "You want to find the real 'you.' As a human being before being a dad. Try to remember things you liked when you were young, things you dreamed of. How about starting even a very small hobby again?",
+    "You want to connect with other dads. You want to feel that you're not alone, right? Try participating casually in online dad communities. There are probably many people with similar concerns."
+  ]
+};
+
+export const REPORT_DATA = REPORT_DATA_KO;

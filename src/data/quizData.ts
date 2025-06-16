@@ -7,7 +7,7 @@ export type Question = {
   max?: number;
 };
 
-export const QUESTIONS: Question[] = [
+export const QUESTIONS_KO: Question[] = [
   {
     type: "single",
     question: "요즘 '내 마음의 에너지'는 어느 정도라고 느끼시나요?",
@@ -48,6 +48,53 @@ export const QUESTIONS: Question[] = [
       "아내와의 관계를 개선하고 싶어요.",
       "'나' 자신을 되찾고, 활력을 얻고 싶어요.",
       "다른 아빠들은 어떻게 지내는지 궁금해요.",
+    ],
+    min: 1,
+    max: 2,
+  },
+];
+
+export const QUESTIONS_EN: Question[] = [
+  {
+    type: "single",
+    question: "How would you describe your 'mental energy' lately?",
+    options: [
+      "Almost completely drained.",
+      "Barely getting through each day.",
+      "Doing okay overall.",
+      "Feeling quite energetic.",
+    ],
+  },
+  {
+    type: "single",
+    question: "Do you feel you have someone you can comfortably open up to about your deepest concerns or difficult emotions?",
+    options: [
+      "Not at all.",
+      "There is someone, but it's hard to be honest.",
+      "Sometimes I do.",
+      "I always have someone I can rely on.",
+    ],
+  },
+  {
+    type: "single",
+    question: "How much time do you have per week that's entirely for 'yourself' (not as a dad)?",
+    options: [
+      "Almost none.",
+      "Less than an hour.",
+      "I try to make time occasionally.",
+      "I think I have enough.",
+    ],
+  },
+  {
+    type: "multi",
+    question:
+      "If you were to use 'Dadak-im', what kind of help would you most want to receive? (Select 1-2 most important)",
+    options: [
+      "Just someone to listen to my story without judgment.",
+      "I want to learn ways to manage stress and anger.",
+      "I want to improve my relationship with my wife.",
+      "I want to rediscover 'myself' and regain vitality.",
+      "I'm curious about how other dads are doing.",
     ],
     min: 1,
     max: 2,

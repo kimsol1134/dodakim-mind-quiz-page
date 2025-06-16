@@ -5,8 +5,9 @@ import ReportHeader from "./quiz-report/ReportHeader";
 import OverallAnalysis from "./quiz-report/OverallAnalysis";
 import ReportSection from "./quiz-report/ReportSection";
 import CustomizedSuggestions from "./quiz-report/CustomizedSuggestions";
-import { REPORT_DATA } from "@/data/reportData";
+import { REPORT_DATA_KO, REPORT_DATA_EN } from "@/data/reportData";
 import { generateOverallAnalysis } from "@/utils/reportAnalysis";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Props = {
   answers: any[];
@@ -14,13 +15,20 @@ type Props = {
 };
 
 const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
+  const { language } = useLanguage();
+  const REPORT_DATA = language === 'ko' ? REPORT_DATA_KO : REPORT_DATA_EN;
+  
   console.log("QuizResultReport - answers:", answers);
 
   if (!answers || answers.length < 4) {
     return (
       <div className="flex flex-col gap-6 p-8 max-w-md">
-        <p className="text-foreground">답변 데이터를 불러올 수 없습니다.</p>
-        <Button onClick={onClose}>닫기</Button>
+        <p className="text-foreground">
+          {language === 'ko' ? "답변 데이터를 불러올 수 없습니다." : "Unable to load answer data."}
+        </p>
+        <Button onClick={onClose}>
+          {language === 'ko' ? "닫기" : "Close"}
+        </Button>
       </div>
     );
   }
@@ -30,28 +38,49 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
   console.log("Individual answers:", { energy, support, time, needs });
   console.log("REPORT_DATA structure:", REPORT_DATA);
   
-  const overallAnalysis = generateOverallAnalysis(answers);
+  const overallAnalysis = generateOverallAnalysis(answers, language);
 
   // 한국어 답변을 인덱스로 변환하는 매핑
-  const energyLabels = [
+  const energyLabelsKo = [
     "거의 방전 상태예요.",
     "간신히 하루하루 버티고 있어요.",
     "그럭저럭 괜찮은 편이에요.",
     "에너지가 꽤 넘치는 편이에요."
   ];
 
-  const supportLabels = [
+  const supportLabelsKo = [
     "전혀 없어요.",
     "있긴 하지만, 솔직히 말하기는 어려워요.",
     "가끔 있는 편이에요.",
     "언제든 기댈 수 있는 상대가 있어요."
   ];
 
-  const timeLabels = [
+  const timeLabelsKo = [
     "거의 없다고 할 수 있어요.",
     "1시간이 채 안 돼요.",
     "가끔은 시간을 내려고 노력해요.",
     "충분히 갖고 있다고 생각해요."
+  ];
+
+  const energyLabelsEn = [
+    "Almost completely drained.",
+    "Barely getting through each day.",
+    "Doing okay overall.",
+    "Feeling quite energetic."
+  ];
+
+  const supportLabelsEn = [
+    "Not at all.",
+    "There is someone, but it's hard to be honest.",
+    "Sometimes I do.",
+    "I always have someone I can rely on."
+  ];
+
+  const timeLabelsEn = [
+    "Almost none.",
+    "Less than an hour.",
+    "I try to make time occasionally.",
+    "I think I have enough."
   ];
 
   // 안전한 데이터 접근을 위한 함수 - 한국어 텍스트를 인덱스로 변환
@@ -64,20 +93,14 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
     if (typeof answer === 'number') {
       index = answer;
     } else if (typeof answer === 'string') {
-      // 답변이 한국어 텍스트인 경우 해당하는 인덱스 찾기
-      switch(category) {
-        case 'energy':
-          index = energyLabels.indexOf(answer);
-          break;
-        case 'support':
-          index = supportLabels.indexOf(answer);
-          break;
-        case 'time':
-          index = timeLabels.indexOf(answer);
-          break;
-        default:
-          index = -1;
-      }
+      // 답변이 텍스트인 경우 해당하는 인덱스 찾기
+      const labels = language === 'ko' ? 
+        (category === 'energy' ? energyLabelsKo : 
+         category === 'support' ? supportLabelsKo : timeLabelsKo) :
+        (category === 'energy' ? energyLabelsEn : 
+         category === 'support' ? supportLabelsEn : timeLabelsEn);
+      
+      index = labels.indexOf(answer);
     } else {
       index = -1;
     }
@@ -90,10 +113,10 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
     if (!categoryData || index < 0 || index >= categoryData.length) {
       console.log(`Invalid index ${index} for category ${category}`);
       return {
-        label: "데이터를 확인 중입니다.",
-        analysis: "잠시만 기다려주세요.",
-        advice: "곧 개인화된 조언을 제공해드릴게요.",
-        priority: "보통"
+        label: language === 'ko' ? "데이터를 확인 중입니다." : "Checking data.",
+        analysis: language === 'ko' ? "잠시만 기다려주세요." : "Please wait a moment.",
+        advice: language === 'ko' ? "곧 개인화된 조언을 제공해드릴게요." : "We'll provide personalized advice soon.",
+        priority: language === 'ko' ? "보통" : "moderate"
       };
     }
     
@@ -116,7 +139,7 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
       <div className="space-y-5">
         <ReportSection
           icon="⚡"
-          title="삶의 에너지 상태"
+          title={language === 'ko' ? "삶의 에너지 상태" : "Life Energy Status"}
           label={energyData.label}
           analysis={energyData.analysis}
           advice={energyData.advice}
@@ -125,7 +148,7 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
 
         <ReportSection
           icon="🤝"
-          title="정서적 지지 환경"
+          title={language === 'ko' ? "정서적 지지 환경" : "Emotional Support Environment"}
           label={supportData.label}
           analysis={supportData.analysis}
           advice={supportData.advice}
@@ -134,7 +157,7 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
 
         <ReportSection
           icon="⏰"
-          title="'나'만의 시간 확보"
+          title={language === 'ko' ? "'나'만의 시간 확보" : "Personal Time Management"}
           label={timeData.label}
           analysis={timeData.analysis}
           advice={timeData.advice}
@@ -144,7 +167,9 @@ const QuizResultReport: React.FC<Props> = ({ answers, onClose }) => {
         <CustomizedSuggestions needs={needs} needsData={REPORT_DATA.needs} />
       </div>
 
-      <Button className="mt-6" variant="secondary" onClick={onClose}>닫기</Button>
+      <Button className="mt-6" variant="secondary" onClick={onClose}>
+        {language === 'ko' ? "닫기" : "Close"}
+      </Button>
     </div>
   );
 };
