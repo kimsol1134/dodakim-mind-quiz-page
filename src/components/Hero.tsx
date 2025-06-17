@@ -21,6 +21,19 @@ const Hero: React.FC<HeroProps> = ({ onQuizOpen }) => {
         <p className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
           {t('hero.description')}
         </p>
+
+        {/* 신뢰도 향상 통계 */}
+        <div className="mt-8 mb-6 p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
+          <p className="text-white/90 text-sm mb-2">
+            {t('hero.stats')}
+          </p>
+          <div className="flex justify-center items-center gap-6 text-xs text-white/70">
+            <span>✓ {t('hero.anonymous')}</span>
+            <span>✓ {t('hero.avgTime')}</span>
+            <span>✓ {t('hero.participants')}</span>
+          </div>
+        </div>
+
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <ul className="text-left space-y-3 text-white/80">
             <li className="flex items-center gap-3">
@@ -38,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ onQuizOpen }) => {
           </ul>
         </div>
         <div className="mt-12">
-          <Button size="lg" className="w-full sm:w-auto" onClick={onQuizOpen}>
+          <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-4" onClick={onQuizOpen}>
             {t('hero.cta')}
           </Button>
           <p className="mt-3 text-sm text-white/60">{t('hero.privacy')}</p>

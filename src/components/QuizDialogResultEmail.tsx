@@ -19,11 +19,12 @@ const QuizDialogResultEmail: React.FC<Props> = ({
   email, emailSent, setEmail, onSubmit, onClose,
 }) => {
   const [agree, setAgree] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const { language } = useLanguage();
 
   // Wrapper for form submit to enforce checkbox
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     if (!agree) {
       e.preventDefault();
       toast({
@@ -36,7 +37,13 @@ const QuizDialogResultEmail: React.FC<Props> = ({
       });
       return;
     }
-    onSubmit(e);
+    
+    setIsSubmitting(true);
+    try {
+      await onSubmit(e);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,7 +72,18 @@ const QuizDialogResultEmail: React.FC<Props> = ({
             </>
           )}
         </DialogDescription>
+
+        {/* 통계 정보 추가 */}
+        <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+          <p className="text-sm text-muted-foreground">
+            {language === 'ko' 
+              ? "📊 전체 아버지 중 73%가 비슷한 고민을 겪고 있습니다"
+              : "📊 73% of all fathers experience similar concerns"
+            }
+          </p>
+        </div>
       </DialogHeader>
+      
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4"
@@ -88,10 +106,22 @@ const QuizDialogResultEmail: React.FC<Props> = ({
                 : "Enter your email address"
               }
               required
-              disabled={emailSent}
+              disabled={emailSent || isSubmitting}
+              className="min-h-[44px]"
             />
-            <Button type="submit" disabled={emailSent}>
-              {language === 'ko' ? "가장 먼저 위로 받기" : "Get Comfort First"}
+            <Button 
+              type="submit" 
+              disabled={emailSent || isSubmitting}
+              className="min-h-[44px] px-6"
+            >
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  {language === 'ko' ? "등록 중..." : "Registering..."}
+                </div>
+              ) : (
+                language === 'ko' ? "가장 먼저 위로 받기" : "Get Comfort First"
+              )}
             </Button>
           </div>
           <div className="mt-2 mb-1 text-xs text-muted-foreground">
@@ -122,15 +152,16 @@ const QuizDialogResultEmail: React.FC<Props> = ({
             </span>
           </div>
         </div>
-        <div className="flex items-center mt-2 gap-2">
+        <div className="flex items-start mt-2 gap-3">
           <Checkbox
             id="agree"
             checked={agree}
             onCheckedChange={val => setAgree(!!val)}
             required
-            disabled={emailSent}
+            disabled={emailSent || isSubmitting}
+            className="mt-1"
           />
-          <label htmlFor="agree" className="text-sm leading-5 select-none">
+          <label htmlFor="agree" className="text-sm leading-5 select-none cursor-pointer">
             <span className="font-medium text-primary mr-1">
               {language === 'ko' ? "[필수]" : "[Required]"}
             </span>
@@ -160,7 +191,7 @@ const QuizDialogResultEmail: React.FC<Props> = ({
           }
         </div>
       </form>
-      <Button variant="secondary" onClick={onClose}>
+      <Button variant="secondary" onClick={onClose} className="min-h-[44px]">
         {language === 'ko' ? "닫기" : "Close"}
       </Button>
     </div>

@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ onQuizOpen }) => {
             <Globe className="w-4 h-4 mr-1" />
             {language === 'ko' ? 'English' : '한국어'}
           </Button>
-          <Button size="sm" onClick={onQuizOpen}>
+          <Button size="sm" className="px-4 py-2" onClick={onQuizOpen}>
             {t('header.diagnosis')}
           </Button>
         </div>

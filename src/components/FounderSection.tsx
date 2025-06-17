@@ -13,6 +13,31 @@ const FounderSection: React.FC<FounderSectionProps> = ({ onQuizOpen }) => {
   
   return (
     <AnimatedSection id="final-cta">
+      {/* 전문가 팀 소개 */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          {t('team.title')}
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="bg-secondary/50 rounded-lg p-6 text-center">
+            <div className="w-20 h-20 bg-primary/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-2xl">👨‍⚕️</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">{t('team.doctor.name')}</h3>
+            <p className="text-white/70 text-sm">{t('team.doctor.title')}</p>
+            <p className="text-white/60 text-xs mt-2">{t('team.doctor.desc')}</p>
+          </div>
+          <div className="bg-secondary/50 rounded-lg p-6 text-center">
+            <div className="w-20 h-20 bg-primary/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-2xl">👨‍💻</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">{t('team.scientist.name')}</h3>
+            <p className="text-white/70 text-sm">{t('team.scientist.title')}</p>
+            <p className="text-white/60 text-xs mt-2">{t('team.scientist.desc')}</p>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-secondary rounded-lg p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center">
         <div className="md:col-span-1 flex justify-center">
           <img alt="Founder" className="w-48 h-48 rounded-full object-cover" src="/lovable-uploads/fa1e3899-c695-48f9-a19b-ddbf29dce4c3.png" />
@@ -33,7 +58,7 @@ const FounderSection: React.FC<FounderSectionProps> = ({ onQuizOpen }) => {
         <div className="mt-8">
           <Button
             size="lg"
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto text-lg px-8 py-4"
             onClick={onQuizOpen}
           >
             {t('founder.final.cta')}
