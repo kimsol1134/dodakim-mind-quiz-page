@@ -69,6 +69,7 @@ const translations = {
     'founder.final.title': '마음의 짐, 조금은 내려놓고 싶으신가요?',
     'founder.final.desc': '간단한 진단을 통해 나의 마음 상태를 돌아보고, 가장 먼저 위로와 격려를 받아보세요.',
     'founder.final.cta': '1분만에 마음 진단 시작하기',
+    'founder.final.tryButton': '도닥임 사용해보기',
     'founder.final.privacy': '당신의 이야기는 소중하고, 안전하게 보호됩니다.',
     
     // Footer
@@ -127,6 +128,7 @@ const translations = {
     'founder.final.title': 'Would you like to put down some of your heart\'s burden?',
     'founder.final.desc': 'Reflect on your mental state through a simple diagnosis and be the first to receive comfort and encouragement.',
     'founder.final.cta': 'Start 1-Minute Mind Diagnosis',
+    'founder.final.tryButton': 'Try Dadak-im',
     'founder.final.privacy': 'Your story is precious and will be safely protected.',
     
     // Footer

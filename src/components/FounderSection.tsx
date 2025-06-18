@@ -36,7 +36,7 @@ const FounderSection: React.FC<FounderSectionProps> = ({ onQuizOpen }) => {
             className="w-full sm:w-auto text-lg px-8 py-4"
             onClick={onQuizOpen}
           >
-            {t('founder.final.cta')}
+            {t('founder.final.tryButton')}
           </Button>
           <p className="mt-3 text-sm text-white/60">
             {t('founder.final.privacy')}
