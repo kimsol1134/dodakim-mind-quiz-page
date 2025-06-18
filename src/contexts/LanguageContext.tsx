@@ -72,6 +72,23 @@ const translations = {
     'founder.final.tryButton': '도닥임 사용해보기',
     'founder.final.privacy': '당신의 이야기는 소중하고, 안전하게 보호됩니다.',
     
+    // Coming Soon Dialog
+    'comingSoon.title': '당신을 위한 특별한 AI 동반자를 준비하고 있어요',
+    'comingSoon.subtitle': '곧 만나실 수 있도록 마지막 점검 중입니다',
+    'comingSoon.complete': '완료',
+    'comingSoon.progress': '개발팀이 24시간 최선을 다하고 있습니다',
+    'comingSoon.launch': '예상 출시일',
+    'comingSoon.launchDate': '2025년 1월 말',
+    'comingSoon.waitlist': '대기자 명단',
+    'comingSoon.waitlistCount': '이미 1,247명이 기다리고 있어요',
+    'comingSoon.betaTitle': '베타 테스터로 가장 먼저 만나보세요',
+    'comingSoon.betaDesc': '출시 알림과 얼리 액세스 혜택을 받아보세요',
+    'comingSoon.emailPlaceholder': '이메일 주소를 입력해주세요',
+    'comingSoon.signupButton': '알림 신청',
+    'comingSoon.benefits': '✓ 무료 베타 테스트 ✓ 출시 즉시 알림 ✓ 특별 할인 혜택',
+    'comingSoon.thankYou': '감사합니다!',
+    'comingSoon.confirmation': '출시 소식을 가장 먼저 전해드릴게요',
+    
     // Footer
     'footer.contact': '문의하기',
     'footer.faq': '자주 묻는 질문',
@@ -130,6 +147,23 @@ const translations = {
     'founder.final.cta': 'Start 1-Minute Mind Diagnosis',
     'founder.final.tryButton': 'Try Dadak-im',
     'founder.final.privacy': 'Your story is precious and will be safely protected.',
+    
+    // Coming Soon Dialog
+    'comingSoon.title': 'We\'re Preparing a Special AI Companion Just for You',
+    'comingSoon.subtitle': 'Final preparations are underway so you can meet it soon',
+    'comingSoon.complete': 'Complete',
+    'comingSoon.progress': 'Our development team is working 24/7 to make this perfect',
+    'comingSoon.launch': 'Expected Launch',
+    'comingSoon.launchDate': 'End of January 2025',
+    'comingSoon.waitlist': 'Waiting List',
+    'comingSoon.waitlistCount': '1,247 people are already waiting',
+    'comingSoon.betaTitle': 'Be the First to Try as a Beta Tester',
+    'comingSoon.betaDesc': 'Get launch notifications and early access benefits',
+    'comingSoon.emailPlaceholder': 'Enter your email address',
+    'comingSoon.signupButton': 'Get Notified',
+    'comingSoon.benefits': '✓ Free Beta Testing ✓ Instant Launch Alert ✓ Special Discount',
+    'comingSoon.thankYou': 'Thank You!',
+    'comingSoon.confirmation': 'We\'ll notify you first when we launch',
     
     // Footer
     'footer.contact': 'Contact Us',

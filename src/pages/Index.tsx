@@ -24,7 +24,7 @@ const Index = () => {
         <BeforeSection />
         <AfterSection />
         <SolutionSection />
-        <FounderSection onQuizOpen={handleQuizOpen} />
+        <FounderSection />
       </main>
       <Footer />
       <QuizDialog open={showQuiz} onOpenChange={setShowQuiz} />
