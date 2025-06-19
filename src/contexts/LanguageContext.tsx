@@ -25,6 +25,14 @@ const translations = {
     'app.title': '도닥임',
     'header.diagnosis': '마음 진단하기',
     
+    // Chat Interface
+    'chat.welcome': '안녕하세요! 저는 도닥임이에요. 아버지로서의 마음을 편안하게 털어놓으세요. 제가 항상 들어드릴게요.',
+    'chat.placeholder': '마음 속 이야기를 편안하게 들려주세요...',
+    'chat.sources': '출처',
+    'chat.emotionAnalysis': '감정 및 원인 분석',
+    'chat.cbt.title': '생각을 더 깊이 들여다볼까요?',
+    'chat.cbt.reflection': '함께 생각해볼 시간이에요',
+    
     // Hero section
     'hero.title': '"퇴근 후, 집으로 다시 출근하는 기분,<br />느낀 적 있나요?"',
     'hero.description': '혹시 당신의 이야기인가요? 혼자 끙끙 앓고 있는 아버지를 위해, 당신의 마음을 가만히 들어주는 AI 동반자 \'도닥임\'이 곁에 있습니다. 판단이나 충고 없이, 그저 당신의 이야기를 들어주고 위로를 건네는 안전한 공간입니다.',
@@ -37,7 +45,7 @@ const translations = {
     // Before section
     'before.title': '혹시, 이런 마음이신가요?',
     'before.loneliness.title': '누구에게도 말 못 할 외로움',
-    'before.loneliness.desc': '가족들 품에 있지만, 마음은 외딴섬에 있는 것 같죠. 짐이 될까 봐, 혹은 \'엄마는 더 힘들다\'는 말을 들을까 봐 망설여집니다. 결국 모든 걸 혼자 짊어지게 됩니다.',
+    'before.loneliness.desc': '가족들 품에 있지만, 마음은 외딴섬에 있는 것 같죠.  짐이 될까 봐, 혹은 \'엄마는 더 힘들다\'는 말을 들을까 봐 망설여집니다. 결국 모든 걸 혼자 짊어지게 됩니다.',
     'before.energy.title': '방전되어 버린 에너지',
     'before.energy.desc': '매일이 그저 버텨내는 시간의 연속입니다. 직장에서 녹초가 되어 돌아오면, 또 다른 역할이 기다리고 있죠. 아이들은 너무 사랑스럽지만, 정작 \'나\' 자신은 사라지고 있는 기분이 듭니다.',
     'before.relationship.title': '아슬아슬한 관계의 긴장',
@@ -81,7 +89,7 @@ const translations = {
     'comingSoon.launchDate': '2025년 1월 말',
     'comingSoon.waitlist': '대기자 명단',
     'comingSoon.waitlistCount': '이미 1,247명이 기다리고 있어요',
-    'comingSoon.betaTitle': '베타 테스터로 가장 먼저 만나보세요',
+    'comingSoon.betaTitle': '체험판 테스터로 가장 먼저 만나보세요',
     'comingSoon.betaDesc': '출시 알림과 얼리 액세스 혜택을 받아보세요',
     'comingSoon.emailPlaceholder': '이메일 주소를 입력해주세요',
     'comingSoon.signupButton': '알림 신청',
@@ -100,6 +108,14 @@ const translations = {
     // Header
     'app.title': 'Dadak-im',
     'header.diagnosis': 'Check My Mind',
+    
+    // Chat Interface
+    'chat.welcome': 'Hello! I\'m Dadak-im. Feel free to share your feelings as a father. I\'m always here to listen.',
+    'chat.placeholder': 'Please share your thoughts comfortably...',
+    'chat.sources': 'Sources',
+    'chat.emotionAnalysis': 'Emotion & Cause Analysis',
+    'chat.cbt.title': 'Let\'s look deeper into your thoughts',
+    'chat.cbt.reflection': 'Time to reflect together',
     
     // Hero section
     'hero.title': '"Do you ever feel like<br />you\'re going to work again after coming home?"',
