@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -157,6 +156,47 @@ const ChatInterface = () => {
 
   const handleRemoveStressor = (stressor: string) => {
     setCurrentMessageStressors(prev => prev.filter(s => s !== stressor));
+  };
+
+  // CBT 대화 시작 이벤트 리스너 추가
+  useEffect(() => {
+    const handleStartCBTConversation = (event: any) => {
+      const { topic } = event.detail;
+      startCBTConversation(topic);
+    };
+
+    window.addEventListener('startCBTConversation', handleStartCBTConversation);
+    return () => window.removeEventListener('startCBTConversation', handleStartCBTConversation);
+  }, []);
+
+  const startCBTConversation = (topic: string) => {
+    const cbtQuestions = {
+      guilt: [
+        "죄책감이 들 때, 자신에게 어떤 말을 하고 계시나요?",
+        "혹시 '좋은 아빠라면 이렇게 하지 않았을 텐데'라는 생각이 드셨나요?",
+        "그 죄책감이 정말 합리적인 것일까요?"
+      ],
+      anger: [
+        "그렇게 화가 났을 때, 머릿속에 어떤 생각이 스쳐 지나갔나요?",
+        "혹시 '나는 아빠 자격이 없나?'와 같은 생각이 드셨나요?",
+        "그 순간 가장 강하게 느낀 감정은 무엇이었나요?"
+      ]
+    };
+
+    const questions = cbtQuestions[topic as keyof typeof cbtQuestions];
+    if (questions) {
+      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+      
+      const cbtMessage: Message = {
+        id: Date.now().toString(),
+        type: 'ai',
+        content: `💭 **함께 생각해볼 시간이에요**\n\n${randomQuestion}`,
+        timestamp: new Date(),
+        isCBTQuestion: true,
+      };
+
+      setMessages(prev => [...prev, cbtMessage]);
+    }
   };
 
   return (
