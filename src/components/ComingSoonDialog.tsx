@@ -20,15 +20,21 @@ const ComingSoonDialog: React.FC<ComingSoonDialogProps> = ({ open, onOpenChange 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      // Here you would typically send the email to your backend
       console.log('Email submitted:', email);
       setIsSubscribed(true);
       setTimeout(() => {
         setIsSubscribed(false);
         setEmail('');
         onOpenChange(false);
+        // MVP 앱으로 리다이렉트
+        window.location.href = '/app';
       }, 2000);
     }
+  };
+
+  const handleTryApp = () => {
+    onOpenChange(false);
+    window.location.href = '/app';
   };
 
   return (
@@ -50,11 +56,11 @@ const ComingSoonDialog: React.FC<ComingSoonDialogProps> = ({ open, onOpenChange 
           {/* Progress Section */}
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <div className="text-3xl font-bold text-primary">85%</div>
-              <div className="text-sm text-slate-400">{t('comingSoon.complete')}</div>
+              <div className="text-3xl font-bold text-primary">MVP 버전</div>
+              <div className="text-sm text-slate-400">체험 가능</div>
             </div>
-            <Progress value={85} className="h-2" />
-            <p className="text-sm text-slate-400 mt-2">{t('comingSoon.progress')}</p>
+            <Progress value={100} className="h-2" />
+            <p className="text-sm text-slate-400 mt-2">베타 버전을 먼저 체험해보세요!</p>
           </div>
 
           {/* Features Preview */}
@@ -62,17 +68,27 @@ const ComingSoonDialog: React.FC<ComingSoonDialogProps> = ({ open, onOpenChange 
             <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg">
               <Calendar className="w-5 h-5 text-primary" />
               <div>
-                <div className="text-white font-medium">{t('comingSoon.launch')}</div>
-                <div className="text-sm text-slate-400">{t('comingSoon.launchDate')}</div>
+                <div className="text-white font-medium">지금 체험 가능</div>
+                <div className="text-sm text-slate-400">MVP 기능들을 먼저 사용해보세요</div>
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg">
               <Users className="w-5 h-5 text-primary" />
               <div>
-                <div className="text-white font-medium">{t('comingSoon.waitlist')}</div>
-                <div className="text-sm text-slate-400">{t('comingSoon.waitlistCount')}</div>
+                <div className="text-white font-medium">베타 테스터</div>
+                <div className="text-sm text-slate-400">피드백을 통해 더 나은 서비스로</div>
               </div>
             </div>
+          </div>
+
+          {/* Try MVP Button */}
+          <div className="text-center">
+            <Button onClick={handleTryApp} className="w-full mb-4" size="lg">
+              MVP 버전 체험하기
+            </Button>
+            <p className="text-xs text-slate-500">
+              *베타 버전으로 일부 기능이 제한될 수 있습니다
+            </p>
           </div>
 
           {/* Email Signup */}
@@ -96,7 +112,6 @@ const ComingSoonDialog: React.FC<ComingSoonDialogProps> = ({ open, onOpenChange 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10 bg-slate-800 border-slate-600 text-white"
-                    required
                   />
                 </div>
                 <Button type="submit" className="px-6">
@@ -115,8 +130,11 @@ const ComingSoonDialog: React.FC<ComingSoonDialogProps> = ({ open, onOpenChange 
               <div className="text-green-400 text-lg font-semibold mb-2">
                 {t('comingSoon.thankYou')}
               </div>
-              <p className="text-green-300 text-sm">
+              <p className="text-green-300 text-sm mb-4">
                 {t('comingSoon.confirmation')}
+              </p>
+              <p className="text-green-300 text-sm">
+                잠시 후 MVP 버전으로 이동합니다...
               </p>
             </div>
           )}
