@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,12 +11,23 @@ import BeforeSection from '@/components/BeforeSection';
 import AfterSection from '@/components/AfterSection';
 import FounderSection from '@/components/FounderSection';
 import Footer from '@/components/Footer';
+import QuizDialog from '@/components/QuizDialog';
 
 const Index = () => {
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
+
+  const handleQuizOpen = () => {
+    setIsQuizOpen(true);
+  };
+
+  const handleQuizClose = () => {
+    setIsQuizOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <Hero />
+      <Header onQuizOpen={handleQuizOpen} />
+      <Hero onQuizOpen={handleQuizOpen} />
       
       {/* 서비스 소개 카드 */}
       <section className="py-16 px-6">
@@ -85,6 +96,8 @@ const Index = () => {
       <AfterSection />
       <FounderSection />
       <Footer />
+      
+      <QuizDialog isOpen={isQuizOpen} onClose={handleQuizClose} />
     </div>
   );
 };
