@@ -1,73 +1,146 @@
-# Welcome to your Lovable project
 
-## Project info
+# 도닥임 (Dodakim) 🤱
 
-**URL**: https://lovable.dev/projects/dfec113a-ffe1-4bfd-b6be-d43eeb449386
+**당신의 마음을 위한 AI 동반자**
 
-## How can I edit this code?
+도닥임은 육아 스트레스와 감정적 어려움을 겪는 아버지들을 위한 AI 기반 정신건강 지원 플랫폼입니다. CBT(인지행동치료) 기법을 활용하여 개인화된 상담과 감정 관리 도구를 제공합니다.
 
-There are several ways of editing your application.
+## ✨ 주요 기능
 
-**Use Lovable**
+### 🤖 AI 채팅 상담
+- **CBT 기반 대화**: 감정 분석 후 맞춤형 인지행동치료 질문 제공
+- **실시간 감정 태그**: 입력하는 동안 감정과 스트레스 원인을 실시간으로 분석
+- **RAG 기반 응답**: 전문적인 상담 지식을 바탕으로 한 개인화된 응답
+- **다국어 지원**: 한국어와 영어 지원
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dfec113a-ffe1-4bfd-b6be-d43eeb449386) and start prompting.
+### 📊 감정 대시보드
+- **7일간 감정 추적**: 감정 패턴을 시각적으로 분석
+- **AI 인사이트**: 패턴 분석을 통한 개인화된 조언과 경고
+- **과거 대화 조회**: 날짜별 대화 기록 및 감정 태그 확인
+- **스트레스 원인 분석**: 주요 스트레스 요인 식별 및 관리
 
-Changes made via Lovable will be committed automatically to this repo.
+### 📅 주간 리포트
+- **개인화된 요약**: 주간 감정 패턴과 개선점 제시
+- **스마트 알림**: 필요한 시점에 맞춤형 알림 제공
 
-**Use your preferred IDE**
+## 🛠 기술 스택
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Frontend
+- **React 18** + **TypeScript** - 타입 안전한 컴포넌트 개발
+- **Vite** - 빠른 개발 환경 및 번들링
+- **Tailwind CSS** - 유틸리티 기반 스타일링
+- **Shadcn/ui** - 접근성이 뛰어난 UI 컴포넌트 라이브러리
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 데이터 시각화 & UX
+- **Recharts** - 반응형 차트 라이브러리
+- **Lucide React** - 일관된 아이콘 시스템
+- **React Context** - 글로벌 상태 관리
 
-Follow these steps:
+### 데이터 관리
+- **localStorage** - 클라이언트 사이드 데이터 영속성
+- **실시간 감정 분석** - 키워드 기반 감정/스트레스 감지
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+## 🚀 시작하기
+
+### 개발 환경 설정
+
+1. **저장소 클론**
+```bash
 git clone <YOUR_GIT_URL>
+cd dodakim
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. **의존성 설치**
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. **개발 서버 실행**
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. **브라우저에서 확인**
+`http://localhost:5173`에서 애플리케이션을 확인할 수 있습니다.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 빌드 및 배포
 
-**Use GitHub Codespaces**
+```bash
+# 프로덕션 빌드
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# 빌드 결과 미리보기
+npm run preview
+```
 
-## What technologies are used for this project?
+## 📱 사용법
 
-This project is built with:
+### 1. 채팅 상담
+- `/app` 페이지의 "도닥임과 대화" 탭에서 시작
+- 일상의 어려움이나 감정적 스트레스에 대해 자유롭게 대화
+- AI가 감정을 분석하고 CBT 기반 질문으로 생각 정리를 도움
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 2. 감정 대시보드
+- "감정 대시보드" 탭에서 지난 7일간의 감정 패턴 확인
+- AI 인사이트를 통해 개인화된 조언 받기
+- 과거 대화 기록 다시 보기
 
-## How can I deploy this project?
+### 3. 주간 알림
+- 매주 일요일 또는 앱 첫 방문시 개인화된 주간 요약 확인
+- 주요 스트레스 원인과 개선 방향 제시
 
-Simply open [Lovable](https://lovable.dev/projects/dfec113a-ffe1-4bfd-b6be-d43eeb449386) and click on Share -> Publish.
+## 🏗 프로젝트 구조
 
-## Can I connect a custom domain to my Lovable project?
+```
+src/
+├── components/
+│   ├── app/                    # 메인 앱 컴포넌트들
+│   │   ├── ChatInterface.tsx   # 채팅 인터페이스
+│   │   ├── EmotionTags.tsx     # 감정 태그 컴포넌트
+│   │   ├── EmotionDashboard.tsx # 감정 대시보드
+│   │   ├── PatternInsight.tsx   # AI 인사이트
+│   │   └── WeeklyNotification.tsx # 주간 알림
+│   └── ui/                     # 재사용 가능한 UI 컴포넌트
+├── contexts/
+│   └── LanguageContext.tsx     # 다국어 지원
+├── utils/
+│   └── cbtQuestions.ts         # CBT 로직 및 감정 분석
+├── pages/
+│   ├── Index.tsx              # 랜딩 페이지
+│   └── App.tsx                # 메인 앱 페이지
+└── data/                      # 정적 데이터 및 번역
+```
 
-Yes, you can!
+## 🎯 개발 철학
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 사용자 중심 설계
+- **접근성 우선**: 모든 사용자가 쉽게 사용할 수 있도록 설계
+- **반응형 디자인**: 모바일과 데스크톱 모두에서 최적화된 경험
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### 개인정보 보호
+- **로컬 우선**: 민감한 대화 내용은 사용자 기기에 저장
+- **익명성 보장**: 개인 식별 정보 수집 최소화
+
+### 전문성과 따뜻함
+- **근거 기반**: CBT 등 검증된 심리치료 기법 활용
+- **공감적 소통**: 따뜻하고 비판단적인 AI 응답
+
+## 🤝 기여하기
+
+프로젝트 개선에 참여하고 싶으시다면:
+
+1. 이슈를 생성하여 버그 리포트나 기능 제안
+2. Pull Request를 통한 코드 기여
+3. 사용자 피드백 및 사용성 테스트 참여
+
+## 📄 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
+
+## 🙏 감사의 말
+
+육아와 일상의 스트레스 속에서도 자신과 가족을 돌보기 위해 노력하는 모든 아버지들에게 이 프로젝트를 바칩니다. 당신의 마음과 노력이 소중합니다.
+
+---
+
+💙 **도닥임과 함께 건강한 마음을 키워가세요**
