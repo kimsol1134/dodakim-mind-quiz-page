@@ -1,22 +1,42 @@
 
 import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, BookOpen, BarChart, User, TrendingUp } from 'lucide-react';
-import ChatInterface from '@/components/app/ChatInterface';
+import ChatInterfaceWithAuth from '@/components/app/ChatInterfaceWithAuth';
 import DailyLog from '@/components/app/DailyLog';
 import WeeklyReport from '@/components/app/WeeklyReport';
 import Profile from '@/components/app/Profile';
 import EmotionDashboard from '@/components/app/EmotionDashboard';
 import WeeklyNotification from '@/components/app/WeeklyNotification';
+import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type TabType = 'chat' | 'dashboard' | 'log' | 'report' | 'profile';
 
 const App = () => {
+  const { user, loading } = useAuth();
   const [activeTab, setActiveTab] = useState<TabType>('chat');
   const [showWeeklyNotification, setShowWeeklyNotification] = useState(false);
   const { t } = useLanguage();
+
+  // 로딩 중이면 로딩 표시
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-white/70">로딩 중...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 로그인하지 않은 경우 인증 페이지로 리다이렉트
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
 
   const tabs = [
     { id: 'chat' as TabType, label: '도닥임과 대화', icon: MessageCircle },
@@ -33,7 +53,6 @@ const App = () => {
     // CBT 대화 시작 이벤트 리스너
     const handleCBTConversation = (event: any) => {
       setActiveTab('chat');
-      // ChatInterface에서 처리하도록 이벤트 전달
     };
 
     window.addEventListener('startCBTConversation', handleCBTConversation);
@@ -96,7 +115,7 @@ const App = () => {
           <WeeklyNotification onDismiss={handleDismissWeeklyNotification} />
         )}
 
-        {activeTab === 'chat' && <ChatInterface />}
+        {activeTab === 'chat' && <ChatInterfaceWithAuth />}
         {activeTab === 'dashboard' && <EmotionDashboard />}
         {activeTab === 'log' && <DailyLog />}
         {activeTab === 'report' && <WeeklyReport />}
