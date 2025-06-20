@@ -97,7 +97,7 @@ const Index = () => {
       <FounderSection />
       <Footer />
       
-      <QuizDialog isOpen={isQuizOpen} onClose={handleQuizClose} />
+      <QuizDialog open={isQuizOpen} onOpenChange={setIsQuizOpen} />
     </div>
   );
 };
